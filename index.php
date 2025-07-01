@@ -1,5 +1,9 @@
 <?php
+require_once('./server/services/TaskService.php');
 
+$service = new TaskService();
+
+$tasks = $service->get_all();
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +62,11 @@
 
       <!-- Tasks -->
       <ul id="list-container">
+        <?php foreach ($tasks as $task): ?>
+          <form method="post">
+            <p><?= $task['description'] ?></p>
+          </form>
+        <?php endforeach; ?>
         <!-- <li class="checked">Task 1</li>
         <li>Task 2</li>
         <li>Task 3</li> -->
