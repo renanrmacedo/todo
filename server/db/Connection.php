@@ -29,7 +29,7 @@ class DatabaseConnection
     private static function setup_database()
     {
         if (self::$pdo == null) {
-            $dsn = 'mysql:host' . HOST;
+            $dsn = 'mysql:host=' . HOST;
             self::$pdo = new PDO($dsn, username: USER, options: CONFIG);
             Setup::create_database(self::$pdo);
         }

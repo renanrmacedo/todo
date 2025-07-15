@@ -65,11 +65,18 @@ $tasks = $service->get_all();
         <?php foreach ($tasks as $task): ?>
           <form method="post">
             <p><?= $task['description'] ?></p>
+            <input type="hidden" name="id" value="<?= $task['id'] ?>">
+
+            <button type="button" onclick="edit('<?= $task['id'] ?>', '<?= $task['description'] ?>')">
+              <span>&#x270E</span>
+            </button>
+
+            <button type="submit" formaction="./server/operations/Delete.php">
+              <span>&#x00D7</span>
+            </button>
           </form>
         <?php endforeach; ?>
-        <!-- <li class="checked">Task 1</li>
-        <li>Task 2</li>
-        <li>Task 3</li> -->
+
       </ul>
     </div>
   </div>

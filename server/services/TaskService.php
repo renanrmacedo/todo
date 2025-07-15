@@ -25,4 +25,21 @@ class TaskService
     {
         return $this->task_pdo->get_all();
     }
+
+    public function get_task(int $id): ?Task
+    {
+        $task = $this->task_pdo->get_id($id);
+
+        return $task;
+    }
+
+    public function update(Task $task): void
+    {
+        $this->task_pdo->update($task);
+    }
+
+    public function remove(int $id): void
+    {
+        $this->task_pdo->delete($id);
+    }
 }
