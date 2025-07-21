@@ -42,4 +42,18 @@ class TaskService
     {
         $this->task_pdo->delete($id);
     }
+
+    public function check(int $id): void
+    {
+        $task = $this->task_pdo->get_id($id);
+
+        if ($task->done) {
+            $task->done = 0;
+        } else {
+            $task->done = 1;
+        }
+
+
+        $this->task_pdo->update($task);
+    }
 }

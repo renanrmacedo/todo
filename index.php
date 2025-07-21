@@ -63,17 +63,31 @@ $tasks = $service->get_all();
       <!-- Tasks -->
       <ul id="list-container">
         <?php foreach ($tasks as $task): ?>
+          <?php
+          $check = '';
+          if ($task['done']) {
+            $check = 'checked';
+          }
+          ?>
+
+
           <form method="post">
-            <p><?= $task['description'] ?></p>
-            <input type="hidden" name="id" value="<?= $task['id'] ?>">
+            <li class="<?= $check ?>">
+              <button type="submit" formaction="./server/operations/Check.php">
+                <img onclick="check(event)" class="<?= $check ?>">
+              </button>
 
-            <button type="button" onclick="edit('<?= $task['id'] ?>', '<?= $task['description'] ?>')">
-              <span>&#x270E</span>
-            </button>
+              <p><?= $task['description'] ?></p>
+              <input type="hidden" name="id" value="<?= $task['id'] ?>">
 
-            <button type="submit" formaction="./server/operations/Delete.php">
-              <span>&#x00D7</span>
-            </button>
+              <button type="button" onclick="edit('<?= $task['id'] ?>', '<?= $task['description'] ?>')">
+                <span>&#x270E</span>
+              </button>
+
+              <button type="submit" formaction="./server/operations/Delete.php">
+                <span>&#x00D7</span>
+              </button>
+            </li>
           </form>
         <?php endforeach; ?>
 
