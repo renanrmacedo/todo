@@ -1,7 +1,7 @@
 <?php
 class Task
 {
-    public ?int $id;
+    public ?int $id = null;
     public string $description;
     public int $done = 0;
 
