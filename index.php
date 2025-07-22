@@ -2,8 +2,9 @@
 require_once('./server/services/TaskService.php');
 
 $service = new TaskService();
-
 $tasks = $service->get_all();
+
+$_COOKIE['error'] = 'banana'; 
 ?>
 
 <!DOCTYPE html>
@@ -49,6 +50,15 @@ $tasks = $service->get_all();
   <div class="container">
     <div class="todo-app">
       <!-- Error-->
+      <?php if (isset($_COOKIE['error'])): ?>
+        <div class="error-card">
+          <div class="error-icon">!</div>
+          <div class="error-message">
+            <strong>Error: </strong><?= $_COOKIE['error'] ?>
+          </div>
+        </div>
+      <?php endif; ?>
+
 
       <!-- App -->
       <h2>ToDo List <img src="./assets/imgs/icon.png"></h2>
