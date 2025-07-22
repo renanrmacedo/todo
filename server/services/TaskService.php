@@ -16,6 +16,13 @@ class TaskService
 
     public function create_task(string $description): void
     {
+        if (empty($description)) {
+            setcookie('error', 'Tarefa não pode ser vazia!', time() + 5, "/");
+            go_back();
+        }
+
+
+
         $task = new Task($description, 0);
 
         $this->task_pdo->create($task);
